@@ -7,6 +7,14 @@ const http = require("http");
 const port = process.env.PORT || 8080;
 const host = process.env.host || 'localhost';
 
+// Importo il modulo quotes da app.js
+const quotes = require('./app.js');
+
+// Definisco una funzione per estrapolare un indice casuale da un array
+function getRandomIndex(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
 // Creo la funzione che definisce cosa avviene quando faccio una richiesta al server 
 // (istanzio il server usando la sua proprietà createServer)
 const server = http.createServer((req, res) => {
@@ -18,9 +26,12 @@ const server = http.createServer((req, res) => {
     }
     res.writeHead(200, {
         // Faccio capire alla risposta che tipo di dato sto inviando
-        "Content-Type": "text/html"
+        "Content-Type": "text/html;charset=utf-8"
     });
-    res.end("<h1>Hello World</h1>");
+
+    // Dichiaro una variabile per la frase casuale, richiamando la funzione getRandomIndex
+    const randomQuote = getRandomIndex(quotes);
+    res.end(`<h1 style='color:blue'>${randomQuote}</h1>`);
 });
 
 // Dico di fare qualcosa al server
