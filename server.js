@@ -10,10 +10,8 @@ const host = process.env.host || 'localhost';
 // Importo il modulo quotes da app.js
 const quotes = require('./app.js');
 
-// Definisco una funzione per estrapolare un indice casuale da un array
-function getRandomIndex(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-}
+// Importo la funzione da utils.js
+const getRandomIndex = require('./utils.js');
 
 // Creo la funzione che definisce cosa avviene quando faccio una richiesta al server 
 // (istanzio il server usando la sua proprietà createServer)
